@@ -36,11 +36,11 @@ ENV MAVEN_VERSION_MINOR 5.2
 RUN wget http://archive.apache.org/dist/maven/maven-${MAVEN_VERSION_MAJOR}/${MAVEN_VERSION_MAJOR}.${MAVEN_VERSION_MINOR}/binaries/apache-maven-${MAVEN_VERSION_MAJOR}.${MAVEN_VERSION_MINOR}-bin.tar.gz
 RUN tar xvf apache-maven-${MAVEN_VERSION_MAJOR}.${MAVEN_VERSION_MINOR}-bin.tar.gz
 RUN rm apache-maven-${MAVEN_VERSION_MAJOR}.${MAVEN_VERSION_MINOR}-bin.tar.gz
-RUN mv apache-maven-${MAVEN_VERSION_MAJOR}.${MAVEN_VERSION_MINOR}  /usr/local/apache-maven
-ENV M2_HOME=/usr/local/apache-maven
+ENV M2_HOME=$CATALINA_HOME/apache-maven-${MAVEN_VERSION_MAJOR}.${MAVEN_VERSION_MINOR}
 ENV M2=$M2_HOME/bin
 ENV PATH=$M2:$PATH
 CMD java -version && mvn -version
+
 
 COPY . /root/workspace/cat
 WORKDIR /root/workspace/cat
